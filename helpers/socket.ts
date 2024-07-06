@@ -4,7 +4,13 @@ import { io } from 'socket.io-client'
 
 export let socket = io({ autoConnect: false })
 
-export const initializeSocket = (jwt: string) => {
+export type InitParams = {
+  jwt: string
+}
+export const initializeSocket = (params: InitParams) => {
+  const { jwt } = params
+
+  // Re-initialize the socket to pass jwt param
   socket = getNewSocketWithQuery(jwt)
 
   const [isConnected, setIsConnected] = useState(false)
@@ -24,7 +30,7 @@ export const initializeSocket = (jwt: string) => {
     }
   }, [])
 
-  return { isConnected, setIsConnected }
+  return isConnected
 }
 
 const getNewSocketWithQuery = (jwt: string) =>

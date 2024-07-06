@@ -2,19 +2,18 @@
 
 import { COOKIES, initializeCookies, initializeSocket, socket } from '@/helpers'
 import { useEffect, useState } from 'react'
-import { useCookies } from 'react-cookie'
 
 const Home = () => {
   const { getCookie, setCookie } = initializeCookies()
-  const { isConnected, setIsConnected } = initializeSocket(
-    getCookie(COOKIES.JWT)
-  )
+  const isConnected = initializeSocket(getCookie(COOKIES.JWT))
+
+  setCookie('id', 'Cowabunga')
 
   useEffect(() => {
     console.log(isConnected)
   }, [isConnected])
 
-  return <div>{isConnected}</div>
+  return <div>AAAAA</div>
 }
 
 export default Home

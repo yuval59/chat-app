@@ -22,6 +22,7 @@ export const initializeCookies = () => {
   const [state, setState] = useCookies([...ALLCOOKIES]) // Dodging TS error
 
   const cookies = parseCookies(state)
+  for (const key of ALLCOOKIES) setState(key, cookies[key])
 
   const getCookie = <K extends CookiesKey>(cookie: K): CookieObject[K] =>
     cookies[cookie]
